@@ -96,7 +96,8 @@
         android:ems="10"
         android:id="@+id/edtNome"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/edtTelefone" />
+        android:layout_alignStart="@+id/edtTelefone"
+       />
 
     <Button
         android:text="Toast"

@@ -3,6 +3,8 @@ package br.com.helloworld.atv01;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ActivitySecundaria extends AppCompatActivity {
@@ -15,14 +17,16 @@ public class ActivitySecundaria extends AppCompatActivity {
         TextView tvSite=(TextView) findViewById(R.id.tvSite);
         TextView tvNota =(TextView) findViewById(R.id.tvNota);
 
+
         Bundle b = getIntent().getExtras();
-        tvNome.setText(tvNome.getText() + "o cara é:"+b.getString("nome"));
+        tvNome.setText(tvNome.getText() + "Esse é o Cara: "+b.getString("nome"));
         Integer telefone = b.getInt("telefone");
-        tvTelefone.setText(tvTelefone.getText()+ "ta ai o fone do cidadão:"+telefone.toString());
-        tvEndereco.setText(tvEndereco.getText()+"mais o endreço de quebra:"+b.getString("endereco"));
-        tvSite.setText(tvSite.getText()+"faz Contato ai:"+b.getString("site"));
+        tvTelefone.setText(tvTelefone.getText()+ "Ligue ai: "+telefone.toString());
+        tvEndereco.setText(tvEndereco.getText()+"Vê o Endereço do Cara: "+b.getString("endereco"));
+        tvSite.setText(tvSite.getText()+"Chama lá que Nois: "+b.getString("site"));
         Double nota = b.getDouble("nota");
-        tvNota.setText(tvNota.getText()+"será que tá boa :"+nota.toString());
+        tvNota.setText(tvNota.getText()+"Que Notinha em Filhão: "+nota.toString());
+
     }
 
     @Override
@@ -30,5 +34,7 @@ public class ActivitySecundaria extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secundaria);
         recebendoDados();
+
+
     }
 }

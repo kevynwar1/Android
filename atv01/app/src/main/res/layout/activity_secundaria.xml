@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_secundaria"
     android:layout_width="match_parent"
@@ -10,43 +11,53 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="br.com.helloworld.atv01.ActivitySecundaria">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/estudante"
+        android:id="@+id/ivestudante"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="206dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="61dp"
-        android:id="@+id/tvNome" />
+        android:layout_marginTop="89dp"
+        android:id="@+id/tvNome"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
+        android:layout_below="@+id/tvTelefone"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp"
+        android:id="@+id/tvEndereco" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tvSite" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvSite"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="38dp"
+        android:id="@+id/tvNota" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
         android:id="@+id/tvTelefone"
         android:layout_below="@+id/tvNome"
-        android:layout_alignStart="@+id/tvNome" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
-        android:id="@+id/tvEndereco"
-        android:layout_below="@+id/tvTelefone"
-        android:layout_alignStart="@+id/tvTelefone" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvSite"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/tvEndereco" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:id="@+id/tvNota"
-        android:layout_below="@+id/tvSite"
-        android:layout_alignStart="@+id/tvSite" />
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

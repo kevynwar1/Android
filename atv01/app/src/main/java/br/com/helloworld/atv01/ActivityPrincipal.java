@@ -6,21 +6,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import static br.com.helloworld.atv01.R.drawable.estudante;
 
 public class ActivityPrincipal extends AppCompatActivity {
 public void criarObjetos() {
 
    Button btTransferir = (Button) findViewById(R.id.btSend);
-   // btTransferir.setOnClickListener(this);
+
    final EditText edtNome = (EditText) findViewById(R.id.edtNome);
    final EditText edtTelefone = (EditText) findViewById(R.id.edtTelefone);
    final EditText edtEndereco = (EditText) findViewById(R.id.edtEndereco);
    final  EditText edtSite = (EditText) findViewById(R.id.edtSite);
    final EditText edtNota = (EditText) findViewById(R.id.edtNota);
     Button btToast = (Button) findViewById(R.id.btToast);
-
-    //listener para passar os daods para outra activity
+    edtNome.requestFocus();
+    //listener para passar os dados para outra activity
     btTransferir.setOnClickListener(new View.OnClickListener(){
         @Override
         public void onClick (View v){
