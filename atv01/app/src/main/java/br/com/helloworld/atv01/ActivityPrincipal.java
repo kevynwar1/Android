@@ -1,6 +1,7 @@
 package br.com.helloworld.atv01;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import static br.com.helloworld.atv01.R.drawable.estudante;
 
@@ -50,6 +52,11 @@ public void criarObjetos() {
         @Override
         public void onClick(View v) {
             Toast.makeText(getApplication(),"Olá Pessoa Chamada:"+edtNome.getText().toString()+"!!",Toast.LENGTH_SHORT).show();
+            VideoView videov = (VideoView) findViewById(R.id.videoAmbiente);
+            String videopath = "android.resource://br.com.helloworld.atv01/"+R.raw.som_ambiente;
+            Uri uri = Uri.parse(videopath);
+            videov.setVideoURI(uri);
+            videov.start();
         }
     });
 
@@ -63,5 +70,10 @@ public void criarObjetos() {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
         criarObjetos();
+
+
     }
+
+
+
 }

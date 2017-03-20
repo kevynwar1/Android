@@ -116,4 +116,11 @@
         android:layout_toEndOf="@+id/btToast"
         android:layout_marginStart="50dp"
         android:id="@+id/btSend" />
+
+    <VideoView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/videoAmbiente"
+        android:layout_below="@+id/btToast"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
