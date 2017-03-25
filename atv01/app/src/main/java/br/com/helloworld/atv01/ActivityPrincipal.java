@@ -15,7 +15,7 @@ import static br.com.helloworld.atv01.R.drawable.estudante;
 
 public class ActivityPrincipal extends AppCompatActivity {
 public void criarObjetos() {
-
+// implementando componentes para o codigo java
    Button btTransferir = (Button) findViewById(R.id.btSend);
 
    final EditText edtNome = (EditText) findViewById(R.id.edtNome);
