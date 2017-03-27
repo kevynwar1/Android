@@ -23,7 +23,7 @@ public class StudentActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.student_activity);
+        setContentView(R.layout.activity_student);
         listaEstudante = (ListView) findViewById(R.id.lvEstudante);
         estudantes = (TipoEstudante) getIntent().getSerializableExtra("estudante");
         listaEstudante();

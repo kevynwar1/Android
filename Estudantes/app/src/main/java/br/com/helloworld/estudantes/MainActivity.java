@@ -5,28 +5,37 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import br.com.helloworld.estudantes.adapter.AdapterTipoEstudante;
+import br.com.helloworld.estudantes.controller.Banco;
 import br.com.helloworld.estudantes.modelo.TipoEstudante;
 
 public class MainActivity extends Activity {
     private ArrayList<TipoEstudante> listaTipoEstudante;
     private ListView lvTipoEstudante;
+    private Button btCadastrar;
+    private Button btTipoEstudante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lvTipoEstudante = (ListView) findViewById(R.id.lvTipoEstudante);
+        btCadastrar = (Button) findViewById(R.id.btCadastra);
+        btTipoEstudante = (Button) findViewById(R.id.btTipoEstudante);
         preencherLista();
         clickLista();
+        clickCadastrar();
+        clickTipo();
 
     }
-
+// preenche lista manualmente
+    /*
     private void preencherLista() {
         listaTipoEstudante = new ArrayList<TipoEstudante>();
         TipoEstudante tipoEstudante1 = new TipoEstudante(1, "Técnico");
@@ -39,6 +48,11 @@ public class MainActivity extends Activity {
         AdapterTipoEstudante adapterTipoEstudante = new AdapterTipoEstudante(MainActivity.this, listaTipoEstudante);
         lvTipoEstudante.setAdapter(adapterTipoEstudante);
 
+    }*/
+
+    private void preencherLista() {
+        AdapterTipoEstudante adapterTipoEstudante = new AdapterTipoEstudante(MainActivity.this, new Banco(MainActivity.this).listaEstudante());
+        lvTipoEstudante.setAdapter(adapterTipoEstudante);
     }
 
     private void clickLista() {
@@ -53,5 +67,25 @@ public class MainActivity extends Activity {
             }
         });
 
+    }
+
+    private void clickCadastrar() {
+        btCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CadEstudante.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void clickTipo() {
+        btTipoEstudante.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CadTipoEstudante.class);
+                startActivity(intent);
+            }
+        });
     }
 }

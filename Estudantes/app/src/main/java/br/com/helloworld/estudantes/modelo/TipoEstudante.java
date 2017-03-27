@@ -15,6 +15,10 @@ public class TipoEstudante implements Serializable {
         this.setConteudo(conteudo);
     }
 
+    public TipoEstudante(String conteudo) {
+        this.setConteudo(conteudo);
+    }
+    public TipoEstudante(){}
 
     public int getId_tipo_estudante() {
         return id_tipo_estudante;
