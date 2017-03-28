@@ -29,24 +29,22 @@ public class CadTipoEstudante extends AppCompatActivity {
         btSalvarTipo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
 
-                    if (edtTipo.getText() != null && !edtTipo.getText().toString().equals("")) {
-                        TipoEstudante tipoEstudante = new TipoEstudante(edtTipo.getText().toString());
-                        int retorno = new Banco(CadTipoEstudante.this).inserirTipo(tipoEstudante);
-                        if (retorno == 0) {
-                            mostramensagem("Inserido", "Inserido com Sucesso !!");
-                            edtTipo.setText("");
-                        } else if (retorno == 1) {
-                            mostramensagem("ERROR", "Não foi possivel inserir !!");
-                        } else if (retorno == 2) {
-                            mostramensagem("AVISO!", "Tipo ja esta inserido");
-                        }
 
+                if (edtTipo.getText() != null && !edtTipo.getText().toString().equals("")) {
+                    TipoEstudante tipoEstudante = new TipoEstudante(edtTipo.getText().toString());
+                    int retorno = new Banco(CadTipoEstudante.this).inserirTipo(tipoEstudante);
+                    if (retorno == 0) {
+                        mostramensagem("Inserido", "Inserido com Sucesso !!");
+                        edtTipo.setText("");
+                    } else if (retorno == 1) {
+                        mostramensagem("ERROR", "Não foi possivel inserir !!");
+                    } else if (retorno == 2) {
+                        mostramensagem("AVISO!", "Tipo ja esta inserido");
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+
                 }
+
 
             }
         });

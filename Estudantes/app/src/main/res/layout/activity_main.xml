@@ -8,28 +8,18 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <Button
-        android:id="@+id/btCadastra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:text="Cadastrar" />
-
     <ListView
         android:id="@+id/lvTipoEstudante"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/btCadastra" />
+        android:layout_below="@+id/btTipoEstudante" />
 
     <Button
         android:id="@+id/btTipoEstudante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:text="Tipo"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:text="Tipo" />
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

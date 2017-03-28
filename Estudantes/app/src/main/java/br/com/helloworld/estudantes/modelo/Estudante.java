@@ -10,13 +10,19 @@ public class Estudante {
     private String telefone;
     private String endereco;
     private String email;
+    private int idTipo;
 
-    public Estudante(int id_estudante, String nome, String telefone, String endereco, String email) {
-        this.id_estudante = id_estudante;
+    public Estudante(int idTipo, String nome, String telefone, String endereco, String email) {
+        this.idTipo = idTipo;
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
         this.email = email;
+
+    }
+
+    public Estudante(){
+
     }
 
     public int getId_estudante() {
@@ -57,5 +63,13 @@ public class Estudante {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getIdTipo() {
+        return idTipo;
+    }
+
+    public void setIdTipo(int idTipo) {
+        this.idTipo = idTipo;
     }
 }

@@ -18,7 +18,7 @@ import br.com.helloworld.estudantes.modelo.TipoEstudante;
 public class MainActivity extends Activity {
     private ArrayList<TipoEstudante> listaTipoEstudante;
     private ListView lvTipoEstudante;
-    private Button btCadastrar;
+
     private Button btTipoEstudante;
 
     @Override
@@ -26,11 +26,11 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lvTipoEstudante = (ListView) findViewById(R.id.lvTipoEstudante);
-        btCadastrar = (Button) findViewById(R.id.btCadastra);
+
         btTipoEstudante = (Button) findViewById(R.id.btTipoEstudante);
         preencherLista();
         clickLista();
-        clickCadastrar();
+
         clickTipo();
 
     }
@@ -69,15 +69,6 @@ public class MainActivity extends Activity {
 
     }
 
-    private void clickCadastrar() {
-        btCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CadEstudante.class);
-                startActivity(intent);
-            }
-        });
-    }
 
     private void clickTipo() {
         btTipoEstudante.setOnClickListener(new View.OnClickListener() {

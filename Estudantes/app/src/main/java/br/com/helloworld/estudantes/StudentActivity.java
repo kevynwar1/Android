@@ -1,12 +1,17 @@
 package br.com.helloworld.estudantes;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.helloworld.estudantes.adapter.AdapterEstudante;
+import br.com.helloworld.estudantes.controller.Banco;
 import br.com.helloworld.estudantes.modelo.Estudante;
 import br.com.helloworld.estudantes.modelo.TipoEstudante;
 
@@ -18,7 +23,8 @@ public class StudentActivity extends Activity {
 
     private ListView listaEstudante;
     private TipoEstudante estudantes;
-    private ArrayList<Estudante> listadestudante;
+    private List<Estudante> listadestudante;
+    private Button btCadastrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +32,22 @@ public class StudentActivity extends Activity {
         setContentView(R.layout.activity_student);
         listaEstudante = (ListView) findViewById(R.id.lvEstudante);
         estudantes = (TipoEstudante) getIntent().getSerializableExtra("estudante");
+        btCadastrar = (Button) findViewById(R.id.btCadastrar);
         listaEstudante();
+        clickCadastrar();
+
     }
 
     private void listaEstudante() {
+        Banco banco = new Banco(StudentActivity.this);
+        listadestudante = banco.listadoEstudante(estudantes.getId_tipo_estudante());
+        AdapterEstudante adapterEstudante = new AdapterEstudante(StudentActivity.this, listadestudante);
+        listaEstudante.setAdapter(adapterEstudante);
+    }
+
+
+
+  /*  private void listaEstudante() {
         listadestudante = new ArrayList<Estudante>();
         Estudante est1 = null;
         Estudante est2 = null;
@@ -55,6 +73,18 @@ public class StudentActivity extends Activity {
         listadestudante.add(est3);
         AdapterEstudante adapterestudante = new AdapterEstudante(StudentActivity.this, listadestudante);
         listaEstudante.setAdapter(adapterestudante);
+    }*/
+
+
+    public void clickCadastrar() {
+        btCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StudentActivity.this, CadEstudante.class);
+                intent.putExtra("estudante", estudantes);
+                startActivity(intent);
+            }
+        });
     }
 
 }
