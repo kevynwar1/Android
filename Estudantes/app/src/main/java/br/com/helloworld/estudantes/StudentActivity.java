@@ -1,11 +1,19 @@
 package br.com.helloworld.estudantes;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +33,7 @@ public class StudentActivity extends Activity {
     private TipoEstudante estudantes;
     private List<Estudante> listadestudante;
     private Button btCadastrar;
+    private Estudante estuda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +44,7 @@ public class StudentActivity extends Activity {
         btCadastrar = (Button) findViewById(R.id.btCadastrar);
         listaEstudante();
         clickCadastrar();
+        clickLista();
 
     }
 
@@ -82,9 +92,83 @@ public class StudentActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(StudentActivity.this, CadEstudante.class);
                 intent.putExtra("estudante", estudantes);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        listaEstudante();
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void clickLista() {
+        listaEstudante.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View view, final int position, long id) {
+                final Estudante estudante = (Estudante) adapter.getAdapter().getItem(position);
+
+                final CharSequence[] itens = {getString(R.string.alterar), getString(R.string.excluir), getString(R.string.ligar), getString(R.string.sms), getString(R.string.localização), getString(R.string.site)};
+                AlertDialog.Builder opçoes = new AlertDialog.Builder(StudentActivity.this);
+                opçoes.setItems(itens, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String opcao = (String) itens[which];
+
+                        if (opcao.equals(getString(R.string.alterar))) {
+                            Intent chamada = new Intent(StudentActivity.this, CadEstudante.class);
+                            chamada.putExtra("alter_estudante", estudante);
+                            /*chamada.putExtra("telefone", estuda.getTelefone());
+                            chamada.putExtra("endereco", estuda.getEndereco());
+                            chamada.putExtra("email", estuda.getEmail());*/
+                            startActivityForResult(chamada, 2);
+                        } else if (opcao.equals(getString(R.string.excluir))) {
+                            mostrasimnao(estudante);
+                        } else if (opcao.equals(getString(R.string.ligar))) {
+                            String numero = "tel:" + "988602849";
+                            startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(numero)));
+                        } else if (opcao.equals(getString(R.string.sms))) {
+                            String sms = "sms:" + "988602849";
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(sms)));
+                        } else if (opcao.equals(getString(R.string.localização))) {
+
+                        } else if (opcao.equals(getString(R.string.site))) {
+                            String site = "site:" + "http://coopera.pe.hu";
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(site)));
+                        }
+                    }
+                });
+                opçoes.setTitle(getString(R.string.opcoes));
+                AlertDialog alert = opçoes.create();
+                alert.show();
+
+
+            }
+        });
+    }
+
+    private void mostrasimnao(final Estudante estudante) {
+        AlertDialog.Builder mensagem = new AlertDialog.Builder(StudentActivity.this);
+        mensagem.setMessage(getString(R.string.confirma));
+        mensagem.setPositiveButton(getString(R.string.sim), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int retorno = new Banco(StudentActivity.this).excluirestudante(estudante);
+                if (retorno == 1) {
+                    Toast.makeText(StudentActivity.this, getString(R.string.msgexcluido), Toast.LENGTH_LONG).show();
+                    listaEstudante();
+                } else if (retorno == 2) {
+                    Toast.makeText(StudentActivity.this, getString(R.string.errorexcluir), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        mensagem.setNegativeButton(getString(R.string.nao), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        mensagem.create().show();
+    }
 }

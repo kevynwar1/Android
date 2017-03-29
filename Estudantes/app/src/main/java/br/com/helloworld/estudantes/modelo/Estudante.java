@@ -1,10 +1,12 @@
 package br.com.helloworld.estudantes.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by kevyn on 23/03/2017.
  */
 
-public class Estudante {
+public class Estudante implements Serializable {
     private int id_estudante;
     private String nome;
     private String telefone;

@@ -36,28 +36,28 @@ public class Banco {
     //cria o banco se não existir
     public void criaBancoTipo() {
         try {
-            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO,0,null);
-            String sql = "CREATE TABLE IF NOT EXISTS "+NOME_TABELA+"(_ID INTEGER PRIMARY KEY AUTOINCREMENT, "+TIPO+" TEXT)";
+            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO, 0, null);
+            String sql = "CREATE TABLE IF NOT EXISTS " + NOME_TABELA + "(_ID INTEGER PRIMARY KEY AUTOINCREMENT, " + TIPO + " TEXT)";
             bancoDados.execSQL(sql);
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if(bancoDados != null){
+        } finally {
+            if (bancoDados != null) {
                 bancoDados.close();
             }
         }
     }
 
-    public void criarBancoEstudante(){
+    public void criarBancoEstudante() {
         try {
-            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO,0,null);
-            String sql = "CREATE TABLE IF NOT EXISTS "+TABELA_ESTUDANTE+"(_ID INTEGER PRIMARY KEY AUTOINCREMENT, "+ID_TIPO+" INTEGER," +
-                    ""+NOME_ESTUDANTE+" TEXT, "+TELEFONE_ESTUDANTE+" TEXT,"+ENDERECO_ESTUDANTE+" TEXT, "+SITE_ESTUDANTE+" TEXT)";
+            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO, 0, null);
+            String sql = "CREATE TABLE IF NOT EXISTS " + TABELA_ESTUDANTE + "(_ID INTEGER PRIMARY KEY AUTOINCREMENT, " + ID_TIPO + " INTEGER," +
+                    "" + NOME_ESTUDANTE + " TEXT, " + TELEFONE_ESTUDANTE + " TEXT," + ENDERECO_ESTUDANTE + " TEXT, " + SITE_ESTUDANTE + " TEXT)";
             bancoDados.execSQL(sql);
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if(bancoDados != null){
+        } finally {
+            if (bancoDados != null) {
                 bancoDados.close();
             }
         }
@@ -65,129 +65,135 @@ public class Banco {
     }
 
 
-
-    public int inserirTipo(TipoEstudante tipoEstudante){
+    public int inserirTipo(TipoEstudante tipoEstudante) {
 
         int retorno = 0;
         try {
-            if (verificaTipo(tipoEstudante.getConteudo())){
+            if (verificaTipo(tipoEstudante.getConteudo())) {
                 return 2;
             }
-          criaBancoTipo();
-            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO,0,null);
-            String sql = "INSERT INTO "+NOME_TABELA+" ("+TIPO+") VALUES ('"+tipoEstudante.getConteudo()+"')";
+            criaBancoTipo();
+            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO, 0, null);
+            String sql = "INSERT INTO " + NOME_TABELA + " (" + TIPO + ") VALUES ('" + tipoEstudante.getConteudo() + "')";
             bancoDados.execSQL(sql);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             retorno = 1;
-        }finally {
-            if(bancoDados != null){
+        } finally {
+            if (bancoDados != null) {
                 bancoDados.close();
             }
         }
         return retorno;
     }
 
-    public int inserirEstudante(Estudante estudante){
+    public int inserirEstudante(Estudante estudante) {
 
         int retorno = 0;
         try {
-            if (verificaEstudante(estudante.getNome(),estudante.getId_estudante())){
-                return 2;
+            if (verificaEstudante(estudante.getNome(), estudante.getId_estudante())) {
+                retorno = 1;
             }
             criarBancoEstudante();
-            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO,0,null);
-            String sql = "INSERT INTO "+TABELA_ESTUDANTE+" ("+ID_TIPO+","+NOME_ESTUDANTE+","+TELEFONE_ESTUDANTE+","+ENDERECO_ESTUDANTE+","+SITE_ESTUDANTE+")" +
-                    " VALUES ('"+estudante.getIdTipo()+"','"+estudante.getNome()+"','"+estudante.getTelefone()+"','"+estudante.getEndereco()+"','"+estudante.getEmail()+"')";
+            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO, 0, null);
+            String sql = "INSERT INTO " + TABELA_ESTUDANTE + " (" + ID_TIPO + "," + NOME_ESTUDANTE + "," + TELEFONE_ESTUDANTE + "," + ENDERECO_ESTUDANTE + "," + SITE_ESTUDANTE + ")" +
+                    " VALUES ('" + estudante.getIdTipo() + "','" + estudante.getNome() + "','" + estudante.getTelefone() + "','" + estudante.getEndereco() + "','" + estudante.getEmail() + "')";
 
             bancoDados.execSQL(sql);
-        }catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
-            retorno = 1;
-        }finally {
-            if(bancoDados != null){
+            retorno = 2;
+        } finally {
+            if (bancoDados != null) {
                 bancoDados.close();
             }
         }
         return retorno;
     }
-    public boolean verificaTipo(String tipo){
+
+    public boolean verificaTipo(String tipo) {
         boolean retorno = false;
-        try{
-            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO,0,null);
-            cursorTipo = bancoDados.rawQuery("SELECT * FROM "+NOME_TABELA+" WHERE "+TIPO+" = '"+tipo+"' ",null);
-            if(cursorTipo != null && cursorTipo.getCount() != 0){
-               retorno  = true;
+        try {
+            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO, 0, null);
+            cursorTipo = bancoDados.rawQuery("SELECT * FROM " + NOME_TABELA + " WHERE " + TIPO + " = '" + tipo + "' ", null);
+            if (cursorTipo != null && cursorTipo.getCount() != 0) {
+                retorno = true;
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if(bancoDados != null){
+            if (bancoDados != null) {
                 bancoDados.close();
-            } if (cursorTipo != null){
+            }
+            if (cursorTipo != null) {
                 cursorTipo.close();
             }
         }
         return retorno;
     }
-    public boolean verificaEstudante(String dados, int id){
+
+    public boolean verificaEstudante(String dados, int id) {
         boolean retorno = false;
-        try{
-            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO,0,null);
-            cursorTipo = bancoDados.rawQuery("SELECT * FROM "+TABELA_ESTUDANTE+" WHERE "+NOME_ESTUDANTE+" = '"+dados+"'AND "+ID_TIPO+" = '"+id+"'",null);
-            if(cursorTipo != null && cursorTipo.getCount() != 0){
-                retorno  = true;
+        try {
+            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO, 0, null);
+            cursorTipo = bancoDados.rawQuery("SELECT * FROM " + TABELA_ESTUDANTE + " WHERE " + NOME_ESTUDANTE + " = '" + dados + "'AND " + ID_TIPO + " = '" + id + "'", null);
+            if (cursorTipo != null && cursorTipo.getCount() != 0) {
+                retorno = true;
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if(bancoDados != null){
+            if (bancoDados != null) {
                 bancoDados.close();
-            } if (cursorTipo != null){
+            }
+            if (cursorTipo != null) {
                 cursorTipo.close();
             }
         }
         return retorno;
     }
-    public List<TipoEstudante> listaEstudante(){
-       ArrayList<TipoEstudante> lista = new ArrayList<TipoEstudante>();
-     try {
-         bancoDados = ctx.openOrCreateDatabase(NOME_BANCO, 0, null);
-         Cursor cursorList = bancoDados.rawQuery("SELECT * FROM " + NOME_TABELA + "", null);
-         if (cursorList != null && cursorList.getCount() != 0) {
-            cursorList.moveToFirst();
-             do {
 
-                 TipoEstudante tipoEstudante = new TipoEstudante();
+    public List<TipoEstudante> listaEstudante() {
+        ArrayList<TipoEstudante> lista = new ArrayList<TipoEstudante>();
+        try {
+            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO, 0, null);
+            Cursor cursorList = bancoDados.rawQuery("SELECT * FROM " + NOME_TABELA + "", null);
+            if (cursorList != null && cursorList.getCount() != 0) {
+                cursorList.moveToFirst();
+                do {
 
-                 tipoEstudante.setId_tipo_estudante(Integer.parseInt(cursorList.getString(cursorList.getColumnIndex("_ID"))));
-                 tipoEstudante.setConteudo(cursorList.getString(cursorList.getColumnIndex("TIPO")));
+                    TipoEstudante tipoEstudante = new TipoEstudante();
 
-                 lista.add(tipoEstudante);
+                    tipoEstudante.setId_tipo_estudante(Integer.parseInt(cursorList.getString(cursorList.getColumnIndex("_ID"))));
+                    tipoEstudante.setConteudo(cursorList.getString(cursorList.getColumnIndex("TIPO")));
 
-             }while (cursorList.moveToNext());
+                    lista.add(tipoEstudante);
 
-         }
-         if (cursorList != null){
-             cursorList.close();
-         }
-     }catch (Exception e){
-         e.printStackTrace();
-     }finally {
-         if(bancoDados != null){
-             bancoDados.close();
-         }
+                } while (cursorList.moveToNext());
 
-     }
-        return  lista;
+            }
+            if (cursorList != null) {
+                cursorList.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (bancoDados != null) {
+                bancoDados.close();
+            }
+
+        }
+        return lista;
     }
-    public List<Estudante> listadoEstudante(int id){
+
+    public List<Estudante> listadoEstudante(int id) {
         ArrayList<Estudante> lista = new ArrayList<Estudante>();
         try {
             bancoDados = ctx.openOrCreateDatabase(NOME_BANCO, 0, null);
-            Cursor cursorList = bancoDados.rawQuery("SELECT * FROM " + TABELA_ESTUDANTE + " WHERE "+ID_TIPO+"= '"+id+"'", null);
+            Cursor cursorList = bancoDados.rawQuery("SELECT * FROM " + TABELA_ESTUDANTE + " WHERE " + ID_TIPO + "= '" + id + "'", null);
             if (cursorList != null && cursorList.getCount() != 0) {
                 cursorList.moveToFirst();
                 do {
@@ -200,22 +206,57 @@ public class Banco {
 
                     lista.add(estudante);
 
-                }while (cursorList.moveToNext());
+                } while (cursorList.moveToNext());
 
             }
-            if (cursorList != null){
+            if (cursorList != null) {
                 cursorList.close();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            if(bancoDados != null){
+        } finally {
+            if (bancoDados != null) {
                 bancoDados.close();
             }
 
         }
-        return  lista;
+        return lista;
     }
 
+    public int excluirestudante(Estudante estudante) {
+        int retorno = 0;
+        try {
+            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO, 0, null);
+            String sql = "DELETE FROM " + TABELA_ESTUDANTE + " WHERE _ID ='" + estudante.getId_estudante() + "'";
+            bancoDados.execSQL(sql);
+            retorno = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            retorno = 2;
+        } finally {
+            if (bancoDados != null) {
+                bancoDados.close();
+            }
+        }
+        return retorno;
+    }
 
+    public int alterarrestudante(Estudante estudante) {
+        int retorno = 0;
+        try {
+            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO, 0, null);
+            String sql = "UPDATE  " + TABELA_ESTUDANTE + " SET " + NOME_ESTUDANTE + " = '" + estudante.getNome() + "'," + TELEFONE_ESTUDANTE + " = '" + estudante.getTelefone() + "'," +
+                    "" + ENDERECO_ESTUDANTE + " = '" + estudante.getEndereco() + "'," + SITE_ESTUDANTE + " = '" + estudante.getEmail() + "' WHERE _ID ='" + estudante.getId_estudante() + "'";
+            bancoDados.execSQL(sql);
+            retorno = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            retorno = 2;
+        } finally {
+            if (bancoDados != null) {
+                bancoDados.close();
+            }
+        }
+        return retorno;
+    }
 }

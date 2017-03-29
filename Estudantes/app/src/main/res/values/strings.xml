@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Estudantes</string>
+
+
+    <string name="excluir">Excluir </string>
+    <string name="alterar">Alterar </string>
+    <string name="ligar">Ligar </string>
+    <string name="sms">Mandar SMS </string>
+    <string name="localização">Localização </string>
+    <string name="site">Acessar Site </string>
+    <string name="opcoes">Opções </string>
+    <string name="confirma">Deseja Excluir </string>
+    <string name="sim">Sim </string>
+    <string name="nao">Não </string>
+    <string name="msgexcluido">excluido com sucesso </string>
+    <string name="msgalterado">alterado com sucesso </string>
+    <string name="errorexcluir">erro ao excluir </string>
+    <string name="erroralterar">erro ao alterar </string>
 </resources>
