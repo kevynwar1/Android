@@ -156,6 +156,7 @@ public class Banco {
         return retorno;
     }
 
+
     public List<TipoEstudante> listaEstudante() {
         ArrayList<TipoEstudante> lista = new ArrayList<TipoEstudante>();
         try {
@@ -241,22 +242,5 @@ public class Banco {
         return retorno;
     }
 
-    public int alterarrestudante(Estudante estudante) {
-        int retorno = 0;
-        try {
-            bancoDados = ctx.openOrCreateDatabase(NOME_BANCO, 0, null);
-            String sql = "UPDATE  " + TABELA_ESTUDANTE + " SET " + NOME_ESTUDANTE + " = '" + estudante.getNome() + "'," + TELEFONE_ESTUDANTE + " = '" + estudante.getTelefone() + "'," +
-                    "" + ENDERECO_ESTUDANTE + " = '" + estudante.getEndereco() + "'," + SITE_ESTUDANTE + " = '" + estudante.getEmail() + "' WHERE _ID ='" + estudante.getId_estudante() + "'";
-            bancoDados.execSQL(sql);
-            retorno = 1;
-        } catch (Exception e) {
-            e.printStackTrace();
-            retorno = 2;
-        } finally {
-            if (bancoDados != null) {
-                bancoDados.close();
-            }
-        }
-        return retorno;
-    }
+
 }

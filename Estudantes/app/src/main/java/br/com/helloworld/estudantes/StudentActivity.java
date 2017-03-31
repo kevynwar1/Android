@@ -109,21 +109,15 @@ public class StudentActivity extends Activity {
             public void onItemClick(AdapterView<?> adapter, View view, final int position, long id) {
                 final Estudante estudante = (Estudante) adapter.getAdapter().getItem(position);
 
-                final CharSequence[] itens = {getString(R.string.alterar), getString(R.string.excluir), getString(R.string.ligar), getString(R.string.sms), getString(R.string.localização), getString(R.string.site)};
+                final Estudante estuda = new Estudante();
+                final CharSequence[] itens = {getString(R.string.excluir), getString(R.string.ligar), getString(R.string.sms), getString(R.string.localização), getString(R.string.site)};
                 AlertDialog.Builder opçoes = new AlertDialog.Builder(StudentActivity.this);
                 opçoes.setItems(itens, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String opcao = (String) itens[which];
 
-                        if (opcao.equals(getString(R.string.alterar))) {
-                            Intent chamada = new Intent(StudentActivity.this, CadEstudante.class);
-                            chamada.putExtra("alter_estudante", estudante);
-                            /*chamada.putExtra("telefone", estuda.getTelefone());
-                            chamada.putExtra("endereco", estuda.getEndereco());
-                            chamada.putExtra("email", estuda.getEmail());*/
-                            startActivityForResult(chamada, 2);
-                        } else if (opcao.equals(getString(R.string.excluir))) {
+                        if (opcao.equals(getString(R.string.excluir))) {
                             mostrasimnao(estudante);
                         } else if (opcao.equals(getString(R.string.ligar))) {
                             String numero = "tel:" + "988602849";
@@ -134,8 +128,9 @@ public class StudentActivity extends Activity {
                         } else if (opcao.equals(getString(R.string.localização))) {
 
                         } else if (opcao.equals(getString(R.string.site))) {
-                            String site = "site:" + "http://coopera.pe.hu";
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(site)));
+                            Uri uri = Uri.parse("http://www.facebook.com");
+                            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                            startActivity(intent);
                         }
                     }
                 });
