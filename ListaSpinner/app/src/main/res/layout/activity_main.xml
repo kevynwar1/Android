@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.helloworld.listaspinner.MainActivity">
+
+    <EditText
+        android:id="@+id/edtValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="Valor"
+        android:inputType="textPersonName" />
+
+    <Spinner
+        android:id="@+id/spOpcoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/edtValor" />
+
+    <Button
+        android:id="@+id/btExcluir"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/spOpcoes"
+        android:layout_marginTop="84dp"
+
+        android:text="Excluir" />
+
+    <Button
+        android:id="@+id/btAdicionar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btExcluir"
+        android:layout_alignBottom="@+id/btExcluir"
+        android:layout_alignParentStart="true"
+        android:text="Adiconar" />
+
+    <ListView
+        android:id="@+id/lvDados"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btExcluir" />
+</RelativeLayout>
