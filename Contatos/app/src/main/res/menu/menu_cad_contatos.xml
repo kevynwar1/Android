@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/acao1"
+        android:orderInCategory="101"
+        android:title="@string/salvar"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/acao2"
+        android:orderInCategory="100"
+        android:title="@string/alterar"
+        android:visible="false"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/acao3"
+        android:orderInCategory="100"
+        android:title="@string/excluir"
+        android:visible="false"
+        app:showAsAction="never" />
+
+</menu>

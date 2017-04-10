@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.helloworld.contatos.CadContatos">
+
+    <EditText
+        android:id="@+id/edtNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="Nome"
+        android:inputType="textPersonName"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/edtTelefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/edtNome"
+        android:layout_marginTop="29dp"
+        android:ems="10"
+        android:hint="Telefone"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/edtTelefone"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
+
+    <Spinner
+        android:id="@+id/spTelefone"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/edtTelefone"
+        android:layout_alignStart="@+id/spEmail" />
+
+    <Spinner
+        android:id="@+id/spEmail"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edtData"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/edtData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/edtEmail"
+        android:layout_marginTop="59dp"
+        android:editable="false"
+        android:ems="10"
+        android:hint="Data"
+        android:inputType="date" />
+
+    <Spinner
+        android:id="@+id/spData"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/edtData"
+        android:layout_alignStart="@+id/spEmail" />
+
+    <EditText
+        android:id="@+id/edtGrupo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Grupos"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/edtEndereco"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="17dp" />
+
+    <EditText
+        android:id="@+id/edtEndereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/spData"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Endereço"
+        android:inputType="textMultiLine" />
+
+    <Spinner
+        android:id="@+id/spEndereco"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/edtEndereco"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

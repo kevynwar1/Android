@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Contatos</string>
+
+
+    <string name = "salvar"> Salvar </string>
+    <string name = "alterar"> Alterar </string>
+    <string name = "excluir"> Excluir </string>
+</resources>

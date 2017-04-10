@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.helloworld.contatos.MainActivity">
+
+    <EditText
+        android:id="@+id/edtPesquisa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="21dp"
+        android:layout_toStartOf="@+id/btAdicionar"
+        android:ems="10"
+        android:hint="Pesquisa"
+        android:inputType="textPersonName" />
+
+    <ImageButton
+        android:id="@+id/btAdicionar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/edtPesquisa"
+        app:srcCompat="@android:drawable/ic_menu_add" />
+
+    <ListView
+        android:id="@+id/lvContatos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btAdicionar" />
+</RelativeLayout>
