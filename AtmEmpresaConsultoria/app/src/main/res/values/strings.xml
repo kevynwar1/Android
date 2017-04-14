@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AtmEmpresaConsultoria</string>
+    <string name="empresa_detalhes">Sobre a Empresa</string>
+    <string name="servico_detalhe">Serviços</string>
+    <string name="texto_consultoria">Consultoria</string>
+    <string name="detalhe_processos">Processos</string>
+    <string name="detalhe_projeto">Acompanhamento e Projetos</string>
+    <string name="detalhe_cliente">Nossos Clientes</string>
+    <string name="detalhe_sys">Empresa de Desenvolvimento de Sistemas</string>
+    <string name="detalhe_rsm">Empresa de Auditoria</string>
+    <string name="detalhe_contato">Contato</string>
+    <string name="detalhe_email">E-mail:consultoria@atm.com.br</string>
+    <string name="detalhe_telefone1">Telefone: (81) 5544-2233</string>
+    <string name="detalhe_telefone2">Telefone: (81) 1194-6789</string>
+    <string name="stop_musica">Parar</string>
+</resources>

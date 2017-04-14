@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    tools:context="br.com.helloworld.atmempresaconsultoria.MainActivity">
+
+    <ImageView
+        android:id="@+id/atm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        tools:layout_editor_absoluteX="59dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginTop="26dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/empresa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/atm"
+        android:layout_below="@+id/atm"
+        android:layout_marginTop="33dp"
+        android:src="@drawable/menu_empresa"
+        tools:layout_editor_absoluteX="59dp"
+        tools:layout_editor_absoluteY="148dp" />
+
+    <ImageView
+        android:id="@+id/servicos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/contatos"
+        android:layout_alignTop="@+id/empresa"
+        android:src="@drawable/menu_servico"
+        tools:layout_editor_absoluteX="210dp"
+        tools:layout_editor_absoluteY="148dp" />
+
+    <ImageView
+        android:id="@+id/clientes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/menu_cliente"
+        tools:layout_editor_absoluteX="59dp"
+        tools:layout_editor_absoluteY="310dp"
+        android:layout_below="@+id/empresa"
+        android:layout_alignStart="@+id/empresa"
+        android:layout_marginTop="21dp" />
+
+    <ImageView
+        android:id="@+id/contatos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="42dp"
+        android:src="@drawable/menu_contato"
+        tools:layout_editor_absoluteX="210dp"
+        tools:layout_editor_absoluteY="310dp"
+        android:layout_alignTop="@+id/clientes"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
